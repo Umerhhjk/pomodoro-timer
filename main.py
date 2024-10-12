@@ -1,13 +1,14 @@
 import tkinter
+
 # ---------------------------- CONSTANTS ------------------------------- #
 PINK = "#e2979c"
 RED = "#e7305b"
 GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 FONT_NAME = "Courier"
-WORK_MIN = 25
-SHORT_BREAK_MIN = 5
-LONG_BREAK_MIN = 20
+WORK_MIN = 0.1
+SHORT_BREAK_MIN = 0.1
+LONG_BREAK_MIN = 0.1
 CHECKMARK = "✔"
 reps = 0
 timer: str | None = None
@@ -26,20 +27,28 @@ def start_button_pressed():
     reps = reps + 1
     if reps > 8:
         timer_label.config(text="That Is Enough \nFor Today")
+        Window.attributes('-topmost', True)
+        Window.attributes('-topmost', False)
         return
 
     if reps % 2 != 0:
         countdown(WORK_MIN * 60)
         timer_label.config(text="Working")
         check_mark.config(text="")
+        Window.attributes('-topmost', True)
+        Window.attributes('-topmost', False)
     elif reps % 8 == 0:
         countdown(LONG_BREAK_MIN * 60)
         timer_label.config(text="Long Break")
         check_mark.config(text=CHECKMARK)
+        Window.attributes('-topmost', True)
+        Window.attributes('-topmost', False)
     else:
         countdown(SHORT_BREAK_MIN * 60)
         timer_label.config(text="Short Break")
         check_mark.config(text=CHECKMARK)
+        Window.attributes('-topmost', True)
+        Window.attributes('-topmost', False)
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
 def countdown(count_timer):
